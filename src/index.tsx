@@ -6,12 +6,10 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
+  <BrowserRouter>
+    <ChakraProvider>
+      <App />
+    </ChakraProvider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
