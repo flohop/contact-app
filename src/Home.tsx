@@ -79,9 +79,22 @@ const Home: React.FC<HomeProps> = ({}) => {
       }).then((res) => {
         console.log("Response: ", res);
 
+        contacts.push({
+          firstName: newFirstName,
+          lastName: newLastName,
+          email: newEmail,
+        });
+
         setNewFirstName("");
         setNewLastName("");
         setNewEmail("");
+
+        toast({
+          title: "Added contact",
+          status: "success",
+          duration: 3000,
+          isClosable: true,
+        });
       });
       console.log("Added doc: ", docRef);
     }
