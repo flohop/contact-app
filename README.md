@@ -1,3 +1,6 @@
+## A few notes
+I forgot to continously push my changes, so after finishing, I recreated my flow. That's why the pushed are so close together.
+Also the firebaseClien.ts file was not uploaded because it contains sensitive information
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
