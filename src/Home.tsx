@@ -23,7 +23,7 @@ import { db } from "./firebaseClient";
 import { Contact } from "./types";
 type HomeProps = {};
 
-const Home: React.FC<HomeProps> = ({}) => {
+const Home: React.FC<HomeProps> = () => {
   const [contacts, setContact] = useState<Contact[]>([
     { firstName: "", lastName: "", email: "" },
   ]);
@@ -36,7 +36,7 @@ const Home: React.FC<HomeProps> = ({}) => {
 
   // get all contacats
   useEffect(() => {
-    const querySnapshot = getDocs(collection(db, "contacts")).then((shot) => {
+    getDocs(collection(db, "contacts")).then((shot) => {
       const newContacts: Contact[] = [];
       shot.forEach((doc) => {
         newContacts.push(doc.data() as Contact);
