@@ -12,6 +12,8 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
+import ContactList from "./ContactList";
+
 import { Contact } from "./types";
 import {
   FormControl,
@@ -133,6 +135,8 @@ const Home: React.FC<HomeProps> = ({}) => {
           </>
         )}
       </Popover>
+      <Heading mb="2%">Contacts</Heading>
+      <ContactList contacts={contacts} />
     </div>
   );
 };
