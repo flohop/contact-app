@@ -1,31 +1,26 @@
+import { AddIcon } from "@chakra-ui/icons";
 import {
-  Popover,
-  PopoverTrigger,
   Button,
-  PopoverContent,
-  PopoverArrow,
-  PopoverCloseButton,
-  PopoverHeader,
-  PopoverBody,
-  Input,
-  toast,
-  Heading,
-} from "@chakra-ui/react";
-import React, { useEffect, useRef, useState } from "react";
-import ContactList from "./ContactList";
-import { Contact } from "./types";
-import {
   FormControl,
   FormLabel,
-  FormErrorMessage,
-  FormHelperText,
+  Heading,
+  Input,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  useToast,
 } from "@chakra-ui/react";
-import { useToast } from "@chakra-ui/react";
-import { AddIcon } from "@chakra-ui/icons";
-import * as EmailValidator from "email-validator";
 import { FocusableElement } from "@chakra-ui/utils";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import * as EmailValidator from "email-validator";
+import { addDoc, collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import ContactList from "./ContactList";
 import { db } from "./firebaseClient";
+import { Contact } from "./types";
 type HomeProps = {};
 
 const Home: React.FC<HomeProps> = ({}) => {

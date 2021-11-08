@@ -1,19 +1,14 @@
-import React, { useState } from "react";
-import { isNamespaceExport } from "typescript";
-import { Contact } from "./types";
 import {
-  Text,
-  Stack,
-  HStack,
-  UnorderedList,
-  ListItem,
-  Center,
   Box,
-  ListIcon,
-  List,
+  Center,
   Heading,
+  HStack,
+  List,
+  ListItem,
+  Text,
 } from "@chakra-ui/react";
-import { PhoneIcon } from "@chakra-ui/icons";
+import React from "react";
+import { Contact } from "./types";
 
 type ContactListProps = {
   contacts: Contact[];

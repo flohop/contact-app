@@ -15,7 +15,7 @@ import * as EmailValidator from "email-validator";
 
 type AddContactProps = {};
 
-const AddContact: React.FC<AddContactProps> = ({}) => {
+const AddContact: React.FC<AddContactProps> = () => {
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newEmail, setNewEmail] = useState("");
