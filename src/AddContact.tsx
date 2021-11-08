@@ -9,6 +9,8 @@ import {
   Center,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "./firebaseClient";
 import * as EmailValidator from "email-validator";
 
 type AddContactProps = {};
@@ -39,6 +41,18 @@ const AddContact: React.FC<AddContactProps> = ({}) => {
       // form is valid
       // form is valid
       // add document
+      const docRef = await addDoc(collection(db, "contacts"), {
+        firstName: newFirstName,
+        lastName: newLastName,
+        email: newEmail,
+      }).then((res) => {
+        console.log("Response: ", res);
+
+        setNewFirstName("");
+        setNewLastName("");
+        setNewEmail("");
+      });
+      console.log("Added doc: ", docRef);
       toast({
         title: "Added contact",
         status: "success",

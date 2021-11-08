@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import ContactList from "./ContactList";
-
 import { Contact } from "./types";
 import {
   FormControl,
@@ -25,12 +24,13 @@ import { useToast } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
 import * as EmailValidator from "email-validator";
 import { FocusableElement } from "@chakra-ui/utils";
-
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "./firebaseClient";
 type HomeProps = {};
 
 const Home: React.FC<HomeProps> = ({}) => {
   const [contacts, setContact] = useState<Contact[]>([
-    { firstName: "Florian", lastName: "Hoppe", email: "me@me.com" },
+    { firstName: "", lastName: "", email: "" },
   ]);
 
   const toast = useToast();
@@ -38,6 +38,18 @@ const Home: React.FC<HomeProps> = ({}) => {
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newEmail, setNewEmail] = useState("");
+
+  // get all contacats
+  useEffect(() => {
+    const querySnapshot = getDocs(collection(db, "contacts")).then((shot) => {
+      const newContacts: Contact[] = [];
+      shot.forEach((doc) => {
+        newContacts.push(doc.data() as Contact);
+        // contacts.push(doc.data)
+      });
+      setContact(newContacts);
+    });
+  }, []);
 
   const popOverBody = React.useRef<FocusableElement>();
 
@@ -60,12 +72,18 @@ const Home: React.FC<HomeProps> = ({}) => {
       // form is valid
       // add document
       onClose();
-      toast({
-        title: "Added contact",
-        status: "success",
-        duration: 3000,
-        isClosable: true,
+      const docRef = await addDoc(collection(db, "contacts"), {
+        firstName: newFirstName,
+        lastName: newLastName,
+        email: newEmail,
+      }).then((res) => {
+        console.log("Response: ", res);
+
+        setNewFirstName("");
+        setNewLastName("");
+        setNewEmail("");
       });
+      console.log("Added doc: ", docRef);
     }
   };
 
